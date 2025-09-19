@@ -34,11 +34,14 @@ slr.fit(x_train, y_train)
 
 def show_answer():
     user_input = entry.get()
-    try:
-        value = float(user_input)   
-        prediction = slr.predict(np.array([[value]]))  
-        output_label.config(text=f"Predicted Marks: {prediction[0][0]:.2f}")
-    except ValueError:
+    value = float(user_input)   
+    if (value <= 10):
+       try:
+              prediction = slr.predict(np.array([[value]]))  
+              output_label.config(text=f"Predicted Marks: {prediction[0][0]:.2f}")
+       except ValueError:
+           output_label.config(text="Please enter a valid number!")
+    else:
         output_label.config(text="Please enter a valid number!")
 
 root = tk.Tk()
